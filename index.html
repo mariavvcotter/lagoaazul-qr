@@ -1,189 +1,74 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!doctype html>
+<html lang="pt-PT"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260710-05-9ed98a3"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lagoa Azul</title>
-  <meta name="description" content="Lagoa Azul — links oficiais: reservas, redes sociais, localização e contactos." />
+  <meta name="description" content="Lagoa Azul — links oficiais: reservas, redes sociais, localização e contactos.">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Magnolia+Script&amp;family=Montserrat:wght@700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/719055fef2a85d14.editing_sdk.js" integrity="sha512-kFqrdGgIiTOsu307feB5Cy3JVP9IayftsmCIZ0csxYBGuBmJQPhyvcnmKR8F0fTW97h5s1gAvz3SumI8zJ6OxQ=="></script>
   <style>
-    :root {
-      --bg: #0b3d5c;
-      --bg2: #124e73;
-      --accent: #35b6c9;
-      --text: #f4fafc;
-      --muted: #b8d4e0;
-      --card: rgba(255, 255, 255, 0.08);
-      --card-hover: rgba(255, 255, 255, 0.16);
-      --border: rgba(255, 255, 255, 0.14);
+    body { font-family: 'Work Sans', sans-serif; }
+    .display { font-family: 'Fraunces', serif; }
+
+    /* soft depth in the background */
+    #bg-deco {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(90% 60% at 15% 0%, rgba(53,182,201,0.28) 0%, transparent 55%),
+        radial-gradient(90% 60% at 90% 100%, rgba(10,46,69,0.5) 0%, transparent 55%);
     }
+    .content-z { position: relative; z-index: 1; }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    .stagger > * { animation: rise .55s cubic-bezier(.2,.7,.3,1) both; }
+    .stagger > *:nth-child(1){animation-delay:.04s}
+    .stagger > *:nth-child(2){animation-delay:.10s}
+    .stagger > *:nth-child(3){animation-delay:.16s}
+    .stagger > *:nth-child(4){animation-delay:.22s}
+    .stagger > *:nth-child(5){animation-delay:.28s}
+    .stagger > *:nth-child(6){animation-delay:.34s}
+    .stagger > *:nth-child(7){animation-delay:.40s}
+    @keyframes rise { from { opacity:0; transform: translateY(14px) scale(.98);} to {opacity:1; transform:none;} }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 60%, #0a2e45 100%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 48px 20px 64px;
-    }
-
-    .wrap {
-      width: 100%;
-      max-width: 480px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .logo {
-      width: 96px;
-      height: 96px;
-      border-radius: 24px;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 44px;
-      font-weight: 800;
-      color: #06283a;
-      margin-bottom: 18px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    h1 {
-      font-size: 26px;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-    }
-
-    .tagline {
-      color: var(--muted);
-      font-size: 15px;
-      margin-bottom: 32px;
-      text-align: center;
-    }
-
-    .cards {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 20px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      color: var(--text);
-      text-decoration: none;
-      transition: transform 0.15s ease, background 0.15s ease;
+    .link-card {
+      display:flex; align-items:center; gap:16px;
+      padding:16px 20px; border-radius:16px;
+      border:1px solid rgba(255,255,255,0.14);
+      text-decoration:none;
       backdrop-filter: blur(6px);
+      transition: transform .15s ease, filter .15s ease;
     }
-
-    .card:hover {
-      background: var(--card-hover);
-      transform: translateY(-2px);
+    .link-card:hover { transform: translateY(-2px); filter: brightness(1.12); }
+    .link-card:active { transform: translateY(0) scale(.995); }
+    .link-icon {
+      width:44px; height:44px; flex:0 0 44px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center; font-size:22px;
+      background: rgba(255,255,255,0.12);
     }
-
-    .card .icon {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .card .label { display: flex; flex-direction: column; }
-    .card .label strong { font-size: 16px; font-weight: 600; }
-    .card .label span { font-size: 13px; color: var(--muted); }
-
-    .card .arrow { margin-left: auto; color: var(--muted); font-size: 20px; }
-
-    footer {
-      margin-top: 40px;
-      color: var(--muted);
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: rgba(255, 200, 0, 0.15);
-      color: #ffdd7a;
-      font-size: 11px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
+    .link-arrow { margin-left:auto; font-size:20px; }
+    a:focus-visible { outline: 3px solid rgba(53,182,201,.8); outline-offset: 3px; }
   </style>
-</head>
-<body>
-  <main class="wrap">
-    <div class="logo">LA</div>
-    <h1>Lagoa Azul</h1>
-    <p class="tagline">Bem-vindo! Escolha o que procura 👇</p>
-
-    <nav class="cards">
-      <a class="card" href="#" target="_blank" rel="noopener">
-        <span class="icon">🍽️</span>
-        <span class="label"><strong>Reservar mesa</strong><span>TheFork</span></span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="#" target="_blank" rel="noopener">
-        <span class="icon">📸</span>
-        <span class="label"><strong>Instagram</strong><span>@lagoaazul</span></span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="#" target="_blank" rel="noopener">
-        <span class="icon">💬</span>
-        <span class="label"><strong>Canal de WhatsApp</strong><span>Novidades e promoções</span></span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="#" target="_blank" rel="noopener">
-        <span class="icon">📍</span>
-        <span class="label"><strong>Google Maps</strong><span>Como chegar</span></span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="#" target="_blank" rel="noopener">
-        <span class="icon">🌐</span>
-        <span class="label"><strong>Website oficial</strong><span>lagoaazul.pt</span></span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="#" target="_blank" rel="noopener">
-        <span class="icon">📖</span>
-        <span class="label"><strong>Menu / Ementa</strong><span>Ver pratos e preços</span></span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="tel:+351000000000">
-        <span class="icon">📞</span>
-        <span class="label"><strong>Ligar</strong><span>+351 000 000 000</span></span>
-        <span class="arrow">→</span>
-      </a>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/0179d719c431a79e.data_sdk.js" type="text/javascript" integrity="sha512-OsRvJkI5GkC3MJQcgotQYotpzrMSX415GiKKgvYdxQEEkzD/fdchShO2FMSy0PJr/tiINMXOk5Vl2zAgg6bUiA=="></script>
+  <script src="/_sdk/9432170dbd2ae0df.resizing_sdk.js" type="text/javascript" integrity="sha512-FeT+58sb1f9ejWPWFjCbJvTT+SDwGV+ngrHUnlO7TWEOoqwOLj6p256kO3vOL7DIWl1cIgrobiof8v2bOigwPg=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen w-full text-white" style="background: rgb(10, 46, 69);">
+  <div id="bg-deco"></div>
+  <div class="content-z w-full flex justify-center px-5 pt-14 pb-16">
+   <main class="w-full max-w-md flex flex-col items-center">
+    <header class="flex flex-col items-center text-center mb-9">
+     <img data-template-id="brand-logo" class="canva-image w-32 h-32 mb-5 drop-shadow-xl object-contain" loading="lazy" src="canva://MAHPAsrJCmM/1" alt="Logótipo de onda azul Lagoa Azul">
+     <h1 data-template-id="brand-name" class="canva-text mb-1" style="font-family: &quot;Magnolia Script&quot;, cursive; font-size: 56px; color: rgb(53, 182, 201); font-weight: 400; font-style: normal;">Lagoa Azul</h1>
+     <p data-template-id="brand-subtitle" class="canva-text mb-4" style="font-family: Montserrat, sans-serif; font-weight: 400; font-size: 16px; letter-spacing: 2px; color: rgb(53, 182, 201); font-style: normal;">RESTAURANTE</p>
+     <p data-template-id="brand-tagline" class="canva-text max-w-xs" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 15px;">Bem-vindo! Escolha o que procura 👇</p>
+    </header>
+    <nav class="w-full flex flex-col gap-3.5 stagger" aria-label="Links Lagoa Azul"><a data-template-id="link-menu" class="canva-link link-card" href="#" target="_blank" rel="noopener noreferrer" style="background: rgba(255, 255, 255, 0.08);"> <img data-template-id="link-menu-icon" class="canva-image" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover;" loading="lazy" src="canva://MAHPLVBi1x4/1" alt="Menu icon"> <span class="flex flex-col"> <strong data-template-id="link-menu-title" class="canva-text" style="color: rgb(244, 250, 252); font-weight: 600; font-style: normal; font-size: 16px;">Ementa</strong> <span data-template-id="link-menu-sub" class="canva-text" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 13px;">Ver pratos e preços</span> </span> <span class="link-arrow" aria-hidden="true">→</span> </a> <a data-template-id="link-opinion" class="canva-link link-card" href="#" target="_blank" rel="noopener noreferrer" style="background: rgba(255, 255, 255, 0.08);"> <img data-template-id="link-opinion-icon" class="canva-image" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover;" loading="lazy" src="canva://MAHPLddEBsA/1" alt="Opinion review icon"> <span class="flex flex-col"> <strong data-template-id="link-opinion-title" class="canva-text" style="color: rgb(244, 250, 252); font-weight: 600; font-style: normal; font-size: 16px;">Deixe a sua opinião</strong> <span data-template-id="link-opinion-sub" class="canva-text" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 13px;">TheFork</span> </span> <span class="link-arrow" aria-hidden="true">→</span> </a> <a data-template-id="link-instagram" class="canva-link link-card" href="#" target="_blank" rel="noopener noreferrer" style="background: rgba(255, 255, 255, 0.08);"> <img data-template-id="link-instagram-icon" class="canva-image" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover;" loading="lazy" src="canva://MAHPLQWIL0s/1" alt="Instagram icon"> <span class="flex flex-col"> <strong data-template-id="link-instagram-title" class="canva-text" style="color: rgb(244, 250, 252); font-weight: 600; font-style: normal; font-size: 16px;">Siga-nos nas redes sociais</strong> <span data-template-id="link-instagram-sub" class="canva-text" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 13px;">@lagoaazul</span> </span> <span class="link-arrow" aria-hidden="true">→</span> </a> <a data-template-id="link-website" class="canva-link link-card" href="#" target="_blank" rel="noopener noreferrer" style="background: rgba(255, 255, 255, 0.08);"> <img data-template-id="link-website-icon" class="canva-image" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover;" loading="lazy" src="canva://MAHPLdeHbe4/1" alt="Website icon"> <span class="flex flex-col"> <strong data-template-id="link-website-title" class="canva-text" style="color: rgb(244, 250, 252); font-weight: 600; font-style: normal; font-size: 16px;">Website oficial</strong> <span data-template-id="link-website-sub" class="canva-text" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 13px;">lagoaazul.pt</span> </span> <span class="link-arrow" aria-hidden="true">→</span> </a> <a data-template-id="link-whatsapp" class="canva-link link-card" href="#" target="_blank" rel="noopener noreferrer" style="background: rgba(255, 255, 255, 0.08);"> <img data-template-id="link-whatsapp-icon" class="canva-image" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover;" loading="lazy" src="canva://MAHPLX8GUkg/1" alt="WhatsApp icon"> <span class="flex flex-col"> <strong data-template-id="link-whatsapp-title" class="canva-text" style="color: rgb(244, 250, 252); font-weight: 600; font-style: normal; font-size: 16px;">Fale connosco</strong> <span data-template-id="link-whatsapp-sub" class="canva-text" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 13px;">WhatsApp</span> </span> <span class="link-arrow" aria-hidden="true">→</span> </a> <a data-template-id="link-phone" class="canva-link link-card" href="tel:+351000000000" style="background: rgba(255, 255, 255, 0.08);"> <img data-template-id="link-phone-icon" class="canva-image" style="width: 44px; height: 44px; border-radius: 12px; object-fit: cover;" loading="lazy" src="canva://MAHPLTpFm8c/1" alt="Phone icon"> <span class="flex flex-col"> <strong data-template-id="link-phone-title" class="canva-text" style="color: rgb(244, 250, 252); font-weight: 600; font-style: normal; font-size: 16px;">Ligue-nos</strong> <span data-template-id="link-phone-sub" class="canva-text" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 13px;">+351 000 000 000</span> </span> <span class="link-arrow" aria-hidden="true">→</span> </a>
     </nav>
-
-    <footer>
-      qr.lagoaazul.pt
-      <br />
-      <span class="badge">Placeholder — em construção</span>
+    <footer class="mt-10 text-center">
+     <p data-template-id="footer-url" class="canva-text" style="color: rgb(184, 212, 224); font-weight: 400; font-style: normal; font-size: 12px;">qr.lagoaazul.pt</p><span data-template-id="footer-badge" class="canva-tag inline-block mt-2 px-2.5 py-1 rounded-full uppercase tracking-wide" style="background: rgba(255, 200, 0, 0.15); color: rgb(255, 221, 122); font-weight: 400; font-style: normal; font-size: 11px;"></span>
     </footer>
-  </main>
-</body>
-</html>
+   </main>
+  </div>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1a07d170068c6ea',t:'MTc4Mzg2MzkyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body></html>
